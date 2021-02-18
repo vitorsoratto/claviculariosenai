@@ -33,7 +33,7 @@
   CREATE TABLE tipo_pessoa
   (
     codigo INT NOT NULL PRIMARY KEY,
-    descricao VARCHAR(100) NOT NULL,
+    descricao VARCHAR(60) NOT NULL,
   );
 ```
 
