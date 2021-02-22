@@ -4,6 +4,7 @@
 
 1. Tabelas
 
+## Segmento de Pessoa
 ### **pessoa**
 
 | codigo        | descricao           | tipo_pessoa (fk_pessoa_tipo_pessoa)  |
@@ -16,13 +17,15 @@
     codigo INT NOT NULL PRIMARY KEY,
     descricao VARCHAR(100) NOT NULL,
     tipo_pessoa INT NOT NULL
-    CONSTRAINT 'fk_pessoa_tipo_pessoa'
-    FOREIGN KEY (tipo_pessoa) REFERENCES tipo_pessoa(codigo)
+    -- Adicionar na criação da tabela
+    -- CONSTRAINT 'fk_pessoa_tipo_pessoa'
+    -- FOREIGN KEY (tipo_pessoa) REFERENCES tipo_pessoa(codigo)
   );
+  
+  ALTER TABLE pessoa ADD CONSTRAINT 'fk_pessoa_tipo_pessoa' FOREIGN KEY (tipo_pessoa) REFERENCES tipo_pessoa (codigo);
 ```
 
 ---
-
 ### **tipo_pessoa**
 
 | codigo |   descricao   |
@@ -33,8 +36,25 @@
   CREATE TABLE tipo_pessoa
   (
     codigo INT NOT NULL PRIMARY KEY,
-    descricao VARCHAR(60) NOT NULL,
+    descricao VARCHAR(60) NOT NULL
   );
 ```
+---
+## Segmento de chave
+### **chave**
 
+| codigo |   descricao   | tipo_chave | setor    | veiculo  |
+| :----: | :-----------: | :--------: | :------: | :------: |
+| INT    | VARCHAR(100)  | INT (fk)   | INT (fk) | INT (fk) |
+
+```mysql
+  CREATE TABLE chave
+  (
+    codigo INT NOT NULL PRIMARY KEY,
+    descricao VARCHAR(60) NOT NULL,
+    tipo_chave INT NOT NULL,
+    setor INT NOT NULL,
+    veiculo INT
+  );
+```
 ---
