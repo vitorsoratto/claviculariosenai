@@ -30,7 +30,7 @@
 
 | codigo |   descricao   |
 | :----: | :-----------: |
-| INT    | VARCHAR(100)  |
+| INT    | VARCHAR(60)  |
 
 ```mysql
   CREATE TABLE tipo_pessoa
@@ -45,7 +45,7 @@
 
 | codigo |   descricao   | tipo_chave | setor    | veiculo  |
 | :----: | :-----------: | :--------: | :------: | :------: |
-| INT    | VARCHAR(100)  | INT (fk)   | INT (fk) | INT (fk) |
+| INT    | VARCHAR(60)   | INT (fk)   | INT (fk) | INT (fk) |
 
 ```mysql
   CREATE TABLE chave
@@ -55,6 +55,38 @@
     tipo_chave INT NOT NULL,
     setor INT NOT NULL,
     veiculo INT
+  );
+  
+  ALTER TABLE chave ADD CONSTRAINT 'fk_chave_tipo_chave' FOREIGN KEY (tipo_chave) REFERENCES tipo_chave (codigo);
+  ALTER TABLE chave ADD CONSTRAINT 'fk_chave_setor' FOREIGN KEY (setor) REFERENCES setor (codigo);
+  ALTER TABLE chave ADD CONSTRAINT 'fk_chave_veiculo' FOREIGN KEY (veiculo) REFERENCES veiculo (codigo);
+```
+---
+### **tipo_chave**
+
+| codigo |   descricao   |
+| :----: | :-----------: |
+| INT    | VARCHAR(60)   |
+
+```mysql
+  CREATE TABLE tipo_chave
+  (
+    codigo INT NOT NULL PRIMARY KEY,
+    descricao VARCHAR(60) NOT NULL,
+  );
+```
+---
+### **setor**
+
+| codigo |   descricao   |
+| :----: | :-----------: |
+| INT    | VARCHAR(60)   |
+
+```mysql
+  CREATE TABLE setor
+  (
+    codigo INT NOT NULL PRIMARY KEY,
+    descricao VARCHAR(60) NOT NULL,
   );
 ```
 ---
